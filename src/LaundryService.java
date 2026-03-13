@@ -1,5 +1,5 @@
 
-public class LaundryService {
+public class LaundryService implements Payable {
 	
 	private int numOfItem;
 	private double cost;
@@ -32,4 +32,5 @@ public class LaundryService {
 		return cost * numOfItem;
 	}
 }
+
 
