@@ -17,7 +17,7 @@ public class LaundryService {
 			return 10;
 			
 		}
-		return -1;
+		return 0;
 	}
 	
 	public LaundryService(int numofItem, String type) {
@@ -32,3 +32,4 @@ public class LaundryService {
 		return cost * numOfItem;
 	}
 }
+
