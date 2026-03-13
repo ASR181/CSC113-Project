@@ -19,15 +19,22 @@ public class Hotel {
 		
 	}
 	
-	public int findRoom(Room room) {
+	public int findRoom(Room target, int lower, int higher) {
 		
-		for(int i = 0; i < count; i++) {
+		if(lower > higher)
+			return -1;
+		else {
 			
-			if (room.getGuest().equals(rooms[i].getGuest())) {
-				return i;
-			}
+			int mid = (lower + higher) / 2;
+			
+			if(rooms[mid] == target)
+				return mid;
+			else if (rooms[mid] < target)
+				return findRoom(target, mid + 1, higher);
+			else
+				return findRoom(target, lower, mid - 1);
+			
 		}
-		return -1;
 	}
 	
 	public boolean removeRoom(Room room) {
