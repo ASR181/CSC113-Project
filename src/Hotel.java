@@ -1,6 +1,6 @@
+package Project_First;
 
 public class Hotel {
-	
 	private Room [] rooms;
 	private String name;
 	private int count;
@@ -9,54 +9,53 @@ public class Hotel {
 		
 		setName(name);
 		rooms = new Room[size];
+		this.count = 0;
 		
 	}
 	
 	public boolean addRoom(Room room) {
 		
-		if (count < rooms.length)
-			rooms[count++] = new Room(room);
+		if (count < rooms.length) {
+			rooms[count++] = room;
+			return true;}
+		return false;
 		
 	}
 	
-	public int findRoom(Room target, int lower, int higher) {
+	public int findRoom(int RoomNumber, int index) {
 		
-		if(lower > higher)
-			return -1;
-		else {
-			
-			int mid = (lower + higher) / 2;
-			
-			if(rooms[mid] == target)
-				return mid;
-			else if (rooms[mid] < target)
-				return findRoom(target, mid + 1, higher);
-			else
-				return findRoom(target, lower, mid - 1);
-			
-		}
+		if (index >= count) return -1;
+		if(rooms[index].getRoomnumber() == RoomNumber) { return index;}
+		return findRoom(RoomNumber, index + 1);
 	}
 	
-	public boolean removeRoom(Room room) {
+	public boolean removeRoom(int RoomNumber) {
 		
-		int i = this.findRoom(room);
+		int i = this.findRoom(RoomNumber, 0);
 		
 		if(i == -1)
 			return false;
 		
 		for(int j = i; j < count - 1; j++) {
-			rooms[j] = rooms[j + 1];
+			rooms[j] = rooms[j + 1];}
 			rooms[--count] = null;
 			return true;
+		
+		
+	}
+	
+	public double getTotalRevnue(int RoomNumber, int index) {
+		if(index >= count) return 0;
+		if(rooms[index].getRoomnumber() == RoomNumber) {
+			return rooms[index].calculatePrice();		
 		}
-		
+		return getTotalRevnue(RoomNumber, index+1);
 	}
 	
-	public double getTotalRevnue(int roomNumber) {
-		
+	public Room getRoomNumber(int i) {
+		return rooms[i];
 	}
 	
-
 	public String getName() {
 		return name;
 	}

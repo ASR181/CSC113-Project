@@ -1,6 +1,5 @@
+package Project_First;
 
 public interface Payable {
-	
-	double getPaymentAmount();
-	
+	public double getPaymentAmount();
 }
