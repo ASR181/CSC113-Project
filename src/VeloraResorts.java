@@ -46,10 +46,13 @@ public class VeloraResorts {
 				if(bookingChoice == 1) {
 					System.out.println("Please select room type:\n1- Standard Room\t2- Suite\t3- PentHouse");
 					int roomType = console.nextInt();
-					System.out.println("enter the following:\nRoom number \nGuest name \nGuest age \nNumber of days ");
+					System.out.println("enter the Room number: ")
 					int roomNum = console.nextInt();
+					System.out.println("enter the Guest name: ");
 					String guestName = console.next();
+					System.out.println("enter the Guest age: ") 
 					int guestAge = console.nextInt();
+					System.out.println("enter the Number of days: ");
 					int stayingDays = console.nextInt();
 					
 					String roomType1;
