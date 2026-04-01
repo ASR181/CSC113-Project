@@ -1,18 +1,17 @@
-package Project_First;
-
 public abstract class Room implements Payable {
+	
 	protected int Roomnumber;
 	protected int days;
 	protected Guest guest;
 	
-	public Room(int n, int d, Guest g) {
-		setRoomnumber(n);
-		setDays(d);
-		this.guest = g;
+	public Room(int num, int days, Guest guest) {
+		setRoomnumber(num);
+		setDays(days);
+		this.guest = guest;
 	}
+	
 	public abstract double calculatePrice();
 	
-	@Override
 	public double getPaymentAmount(){
 		return calculatePrice();
 	}

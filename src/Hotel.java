@@ -1,5 +1,3 @@
-package Project_First;
-
 public class Hotel {
 	private Room [] rooms;
 	private String name;
@@ -13,11 +11,18 @@ public class Hotel {
 		
 	}
 	
-	public boolean addRoom(Room room) {
+	public boolean addReservation(int num, int days, Guest guest, String type) {
 		
 		if (count < rooms.length) {
-			rooms[count++] = room;
-			return true;}
+			
+			if(type.equalsIgnoreCase("suite"))
+				rooms[count++] = new Suite(num, days, guest);
+			else if(type.equalsIgnoreCase("PentHouse"))
+				rooms[count++] = new PentHouse(num, days, guest);
+			else
+				rooms[count++] = new StandardRoom(num, days, guest);
+			return true;
+				}
 		return false;
 		
 	}
@@ -25,11 +30,13 @@ public class Hotel {
 	public int findRoom(int RoomNumber, int index) {
 		
 		if (index >= count) return -1;
-		if(rooms[index].getRoomnumber() == RoomNumber) { return index;}
+		if(rooms[index].getRoomnumber() == RoomNumber) {
+			return index;
+		}
 		return findRoom(RoomNumber, index + 1);
 	}
 	
-	public boolean removeRoom(int RoomNumber) {
+	public boolean removeReservation(int RoomNumber) {
 		
 		int i = this.findRoom(RoomNumber, 0);
 		
@@ -37,7 +44,8 @@ public class Hotel {
 			return false;
 		
 		for(int j = i; j < count - 1; j++) {
-			rooms[j] = rooms[j + 1];}
+			rooms[j] = rooms[j + 1];
+				}
 			rooms[--count] = null;
 			return true;
 		
@@ -52,7 +60,7 @@ public class Hotel {
 		return getTotalRevnue(RoomNumber, index+1);
 	}
 	
-	public Room getRoomNumber(int i) {
+	public Room getRoom(int i) {
 		return rooms[i];
 	}
 	

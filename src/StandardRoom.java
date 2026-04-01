@@ -1,11 +1,20 @@
-package Project_First;
-
 public class StandardRoom extends Room {
-	public StandardRoom(int n, int d, Guest g) {
-		super(n,d,g);
+	
+	private double pricePNight = 100;
+	
+	public StandardRoom(int num, int days, Guest guest) {
+		super(num,days,guest);
 	}
-	@Override
+	
 	public double calculatePrice() {
-		return (days*100);
+		return (days*pricePNight);
+	}
+	
+	public void setPricePNight(double price) {
+		pricePNight = price;
+	}
+	
+	public double getPricePNight() {
+		return pricePNight;
 	}
 }

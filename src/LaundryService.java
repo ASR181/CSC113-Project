@@ -5,26 +5,23 @@ public class LaundryService implements Payable {
 	private double cost;
 	
 	private int pickCost(String type) {
-		switch(type) {
 		
-		case "shirt":
+		if(type.equalsIgnoreCase("shirt"))
 			return 30;
-		case "pants":
+		else if (type.equalsIgnoreCase("pants"))
 			return 20;
-		case "jacket":
+		else if (type.equalsIgnoreCase("jacket"))
 			return 50;
-		case "shoes":
+		else if(type.equalsIgnoreCase("shoes"))
 			return 10;
-			
-		}
-		return 0;
+		else
+			return 0;
 	}
 	
-	public LaundryService(int numofItem, String type) {
+	public LaundryService(int numOfItem, String type) {
 		
 		this.numOfItem = numOfItem;
 		this.cost = pickCost(type);
-		
 	}
 	
 	public double getPaymentAmount() {
@@ -32,5 +29,3 @@ public class LaundryService implements Payable {
 		return cost * numOfItem;
 	}
 }
-
-

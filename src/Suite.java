@@ -1,11 +1,21 @@
-package Project_First;
-
 public class Suite extends Room {
-	public Suite(int n, int d, Guest g) {
-		super(n,d,g);
+	
+	protected double pricePNight = 250;
+	
+	public Suite(int num, int days, Guest guest) {
+		super(num,days,guest);
 	}
-	@Override
+	
 	public double calculatePrice() {
-		return (days*250);
+		return (days*pricePNight);
+	}
+	
+
+	public void setPricePNight(double price) {
+		pricePNight = price;
+	}
+	
+	public double getPricePNight() {
+		return pricePNight;
 	}
 }

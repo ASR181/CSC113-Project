@@ -1,11 +1,12 @@
-package Project_First;
-
 public class PentHouse extends Suite {
-	public PentHouse(int n, int d, Guest g) {
-		super(n,d,g);
+	
+	protected double pricePNight = 500;
+	
+	public PentHouse(int num, int days, Guest guest) {
+		super(num, days, guest);
 	}
-	@Override
+	
 	public double calculatePrice() {
-		return (days*500);
+		return (days*pricePNight);
 	}
 }

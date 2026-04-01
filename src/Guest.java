@@ -1,9 +1,14 @@
-package Project_First;
-
 public class Guest {
 
 	private String name;
 	private int age;
+	
+	public Guest(String name, int age) {
+		
+		setName(name);
+		setAge(age);
+
+	}
 
 	public String getName() {
 		return name;
