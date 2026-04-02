@@ -1,8 +1,10 @@
 public class Guest {
 
+// Attributes
 	private String name;
 	private int age;
 	
+// Constructor
 	public Guest(String name, int age) {
 		
 		setName(name);
@@ -10,6 +12,7 @@ public class Guest {
 
 	}
 
+// Setters and Getters
 	public String getName() {
 		return name;
 	}
