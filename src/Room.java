@@ -1,21 +1,24 @@
-public abstract class Room implements Payable {
+public abstract class Room implements Payable { // using Payable Interface
 	
+//Attributes
 	protected int Roomnumber;
 	protected int days;
 	protected Guest guest;
 	
+// Constructor
 	public Room(int num, int days, Guest guest) {
 		setRoomnumber(num);
 		setDays(days);
 		this.guest = guest;
 	}
 	
+// Abstract method
 	public abstract double calculatePrice();
 	
 	public double getPaymentAmount(){
 		return calculatePrice();
 	}
-
+// Setters and Getters
 	public int getRoomnumber() {
 		return Roomnumber;
 	}
