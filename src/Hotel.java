@@ -1,11 +1,8 @@
 public class Hotel {
-
-// Attributes
 	private Room [] rooms;
 	private String name;
 	private int count;
-
-	// Constructor
+	
 	public Hotel(String name, int size) {
 		
 		setName(name);
@@ -14,7 +11,6 @@ public class Hotel {
 		
 	}
 	
-// Method for adding guest to room
 	public boolean addReservation(int num, int days, Guest guest, String type) {
 		
 		if (count < rooms.length) {
@@ -31,7 +27,6 @@ public class Hotel {
 		
 	}
 	
-// finding room using recursion
 	public int findRoom(int RoomNumber, int index) {
 		
 		if (index >= count) return -1;
@@ -41,7 +36,6 @@ public class Hotel {
 		return findRoom(RoomNumber, index + 1);
 	}
 	
-// end current reservation
 	public boolean removeReservation(int RoomNumber) {
 		
 		int i = this.findRoom(RoomNumber, 0);
@@ -58,11 +52,8 @@ public class Hotel {
 		
 	}
 	
-// gets total payment for specific room using it's number
-	public double getTotalRevnue(int 
-  RoomNumber, int index) {
-		if(index >= count)
-    return 0;
+	public double getTotalRevnue(int RoomNumber, int index) {
+		if(index >= count) return 0;
 		if(rooms[index].getRoomnumber() == RoomNumber) {
 			return rooms[index].calculatePrice();		
 		}
@@ -73,7 +64,6 @@ public class Hotel {
 		return rooms[i];
 	}
 	
-// Setters and Getters
 	public String getName() {
 		return name;
 	}
