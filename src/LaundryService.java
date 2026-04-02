@@ -27,7 +27,7 @@ public class LaundryService implements Payable { // using Payable interface
 		this.cost = pickCost(type);
 	}
 
-// Overriding method from class Payable	
+// Overriding method from Interface Payable	
 	public double getPaymentAmount() {
 		
 		return cost * numOfItem;
