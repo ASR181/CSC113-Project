@@ -1,9 +1,11 @@
 
-public class LaundryService implements Payable {
+public class LaundryService implements Payable { // using Payable interface
 	
+// Attributes
 	private int numOfItem;
 	private double cost;
 	
+// Helper method used within constructor to choose cost value
 	private int pickCost(String type) {
 		
 		if(type.equalsIgnoreCase("shirt"))
@@ -18,12 +20,14 @@ public class LaundryService implements Payable {
 			return 0;
 	}
 	
+// Constructor
 	public LaundryService(int numOfItem, String type) {
 		
 		this.numOfItem = numOfItem;
 		this.cost = pickCost(type);
 	}
-	
+
+// Overriding method from class Payable	
 	public double getPaymentAmount() {
 		
 		return cost * numOfItem;
