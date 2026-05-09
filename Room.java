@@ -1,4 +1,7 @@
-public abstract class Room implements Payable { // using Payable Interface
+
+import java.io.Serializable;
+
+public abstract class Room implements Payable, Serializable { // using Payable Interface
 	
 //Attributes
 	protected int Roomnumber;

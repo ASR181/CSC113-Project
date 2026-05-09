@@ -1,4 +1,7 @@
-public class Guest {
+
+import java.io.Serializable;
+
+public class Guest implements Serializable{
 
 // Attributes
 	private String name;
