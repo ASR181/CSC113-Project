@@ -1,0 +1,46 @@
+/*  Main Background */
+.root {
+    -fx-background-color: #F4F6F9;
+}
+
+/*  Labels  */
+.title-label {
+    -fx-text-fill: #000080;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.section-title {
+    -fx-text-fill: #000080;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Section Containers */
+.section-box {
+    -fx-background-color: white;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 15;
+}
+
+/* Buttons */
+.navy-button {
+    -fx-background-color: #000080;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 15 8 15;
+    -fx-cursor: hand;
+}
+
+.navy-button:hover {
+    -fx-background-color: #0000cd; /* Lighter blue on hover */
+}
+
+/* Text Area */
+.result-text-area {
+    -fx-font-size: 14px;
+    -fx-control-inner-background: #ffffff;
+}

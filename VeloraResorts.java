@@ -1,3 +1,4 @@
+package application;
 import java.util.Scanner;
 
 public class VeloraResorts {
@@ -9,7 +10,7 @@ public class VeloraResorts {
         
         Hotel Velora = new Hotel("Velora Resorts", 500);
         
-        // LOAD DATA FROM FILE AT START
+        // loading data
         System.out.println("Loading hotel data...");
         Velora.loadFromFile("HotelData.dat");
         
@@ -25,14 +26,14 @@ public class VeloraResorts {
                 choice = console.nextInt();
             }
             
-            // --- OPTION 3: SHUT DOWN ---
+            // Shutting down
             if(choice == 3) { 
                 Velora.saveToFile("HotelData.dat");
                 System.out.println("See you later, Goodbye!");
                 System.exit(0);
             }
             
-            // --- OPTION 2: LAUNDRY ---
+            // laundry services
             else if(choice == 2) {
                 System.out.println("-- Laundry Service --");
                 System.out.print("Number of Items: ");
@@ -44,7 +45,7 @@ public class VeloraResorts {
                 System.out.println("Cost of Laundry(in r.s): " + Laundry.getPaymentAmount());
             }
             
-            // --- OPTION 1: HOTEL ROOMS ---
+            // managing hotel rooms
             else if (choice == 1) {
                 System.out.println("-- Booking management --\n");
                 System.out.println("1- Add Reservation\t 2- remove Reservation");
@@ -81,12 +82,12 @@ public class VeloraResorts {
                     System.out.print("please enter room number: ");
                     int roomNum = console.nextInt();
                     
-                    // EXCEPTION HANDLING: Try/Catch for Checked Exception
+                    // handling (checked exception)
                     try {
                         Velora.removeReservation(roomNum);
                         System.out.println("Reservation removed succesfully!");
                     } catch (RoomNotFoundException e) {
-                        System.err.println(e.getMessage()); // Prints the error without crashing
+                        System.err.println(e.getMessage()); // Prints the error
                     }
                 }
                 

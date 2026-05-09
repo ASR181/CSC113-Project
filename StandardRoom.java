@@ -1,3 +1,4 @@
+package application;
 public class StandardRoom extends Room { // inherent from class Room
 	
 // Attributes

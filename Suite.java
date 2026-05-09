@@ -1,3 +1,4 @@
+package application;
 public class Suite extends Room { // inherent from class Room
 	
 // Attributes

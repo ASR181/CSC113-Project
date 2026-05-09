@@ -1,3 +1,4 @@
+package application;
 public class PentHouse extends Suite { // inherent from class Room
 	
 // Constructor

@@ -1,3 +1,4 @@
+package application;
 
 public class LaundryService implements Payable { // using Payable interface
 	

@@ -1,39 +1,40 @@
 
+package application;
 import java.io.*;
 
 public class Hotel implements Serializable {
 
-    // Attributes head & tail instead of array
     private Node head;    // first room 
     private Node tail;    // last room 
     private String name;
     private int count;
+    private double pastRevenue; // to save revenue after guest's check out
 
-    // Constructor
     public Hotel(String name, int size) {
         setName(name);
         head = tail = null;              
         count = 0;
+        pastRevenue = 0.0;
     }
-
- // write data to an Object File
+    // loading data into file
     public void saveToFile(String name) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(name))) {
             out.writeObject(head);
             out.writeInt(count);
+            out.writeDouble(pastRevenue);
             System.out.println("Data successfully saved to " + name);
         } catch (IOException e) {
             System.err.println("Error saving file: " + e.getMessage());
         }
     }
-    
-    // read from an Object File
+    //extracting data out of file
     public void loadFromFile(String name) {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(name))) {
             head = (Node) in.readObject();
             count = in.readInt();
+            pastRevenue = in.readDouble();
             
-            // Re-establish the tail pointer
+            
             if (head == null) {
                 tail = null;
             } else {
@@ -47,22 +48,20 @@ public class Hotel implements Serializable {
         } catch (FileNotFoundException e) {
             System.out.println("No previous save file found. Starting fresh.");
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error loading file: " + e.getMessage());
+            System.err.println("Error loading file. Data might be from an older version.");
         }
     }
 
+   
 
-    // addReservation 
- public boolean addReservation(int num, int days, Guest guest, String type) {
-        
-        // Handling Exception locally in method
-        try {
+    public boolean addReservation(int num, int days, Guest guest, String type) {
+        try {  // handling exception in addReservation
             if (findRoom(num, 0) != -1) {
                 throw new DuplicateRoomException("Room " + num + " is already booked!");
             }
         } catch (DuplicateRoomException e) {
             System.err.println(e.getMessage());
-            return false; // Exit method because room already exists
+            return false; 
         }
 
         Room newRoom;
@@ -85,38 +84,18 @@ public class Hotel implements Serializable {
         return true;
     }
 
-
-    // Helper method
-    private Node getNodeAt(int index) {
-        Node current = head;
-        for (int i = 0; i < index; i++)
-            current = current.getNext();
-        return current;
-    }
-
-    // findRoom 
-    public int findRoom(int RoomNumber, int index) {
-        if (index >= count)
-        	return -1;
-
-        // Get node at current index and cast data to Room
-        Room room = (Room) getNodeAt(index).getData();
-
-        if (room.getRoomnumber() == RoomNumber)
-            return index;
-
-        return findRoom(RoomNumber, index + 1);
-    }
-
-    // removeReservation 
     public boolean removeReservation(int RoomNumber) throws RoomNotFoundException {
         int i = findRoom(RoomNumber, 0);
         
-        // Propagating Exception
         if (i == -1) {
             throw new RoomNotFoundException("Cannot remove: Room number " + RoomNumber + " was not found!");
         }
 
+        // saving room revenue to avoid losing it
+        Room roomToRemove = (Room) getNodeAt(i).getData();
+        pastRevenue += roomToRemove.getPaymentAmount();
+
+        // removing the room from the linked list
         if (i == 0) {
             if (head == tail)
                 head = tail = null;      
@@ -135,10 +114,27 @@ public class Hotel implements Serializable {
         return true;
     }
 
-    // getRoomRevnue
+    private Node getNodeAt(int index) {
+        Node current = head;
+        for (int i = 0; i < index; i++)
+            current = current.getNext();
+        return current;
+    }
+
+    public int findRoom(int RoomNumber, int index) {
+        if (index >= count)
+            return -1;
+
+        Room room = (Room) getNodeAt(index).getData();
+        if (room.getRoomnumber() == RoomNumber)
+            return index;
+
+        return findRoom(RoomNumber, index + 1);
+    }
+
     public double getRoomRevnue(int RoomNumber, int index) {
         if (index >= count)
-        	return 0;
+            return 0;
 
         Room room = (Room) getNodeAt(index).getData();
 
@@ -148,28 +144,36 @@ public class Hotel implements Serializable {
         return getRoomRevnue(RoomNumber, index + 1);
     }
 
-    // getTotalRevnue  walks over all nodes
     public double getTotalRevnue() {
-        double sum = 0;
+    	
+        double sum = pastRevenue; 
+        
         Node current = head;              
         while (current != null) {         
+            // Add the money from all currently staying guests will be added to the pastRevenue
             Room room = (Room) current.getData();
             sum += room.getPaymentAmount();
             current = current.getNext();  
         }
         return sum;
     }
-
+    // setters and getters
     public String getName(){
     	return name;
-    	}
-    public void setName(String name){
-    	this.name = name; 
+    		
     }
-    public int getCount(){
-    	return count; 
-    	}
-    public void setCount(int count){
-    	this.count = count;
-    	}
+    
+    public void setName(String name){
+    	this.name = name;
+    	
+    }
+    
+    public int getCount(){ 
+    	return count;
+    	
+    }
+    public void setCount(int count){ 
+    	this.count = count; 
+    	
+    }
 }
